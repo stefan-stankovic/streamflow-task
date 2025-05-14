@@ -7,6 +7,7 @@ import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { useMemo } from 'react';
 
 import '@solana/wallet-adapter-react-ui/styles.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet } from 'react-router';
 import { Navbar } from './app/components/layout/navbar';
 
@@ -15,13 +16,17 @@ const App = () => {
 
   const wallets = useMemo(() => [new PhantomWalletAdapter({})], []);
 
+  const client = new QueryClient();
+
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
-          <Navbar />
-          <Outlet />
-        </WalletModalProvider>
+        <QueryClientProvider client={client}>
+          <WalletModalProvider>
+            <Navbar />
+            <Outlet />
+          </WalletModalProvider>
+        </QueryClientProvider>
       </WalletProvider>
     </ConnectionProvider>
   );

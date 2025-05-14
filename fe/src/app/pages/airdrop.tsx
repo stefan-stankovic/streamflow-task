@@ -1,5 +1,8 @@
 import { ContentLayout } from '@/app/components/layout/content-layout';
+import { useParams } from 'react-router';
 
 export const Airdrop = () => {
-  return <ContentLayout>airdrop</ContentLayout>;
+  const { airdropId } = useParams();
+
+  return <ContentLayout>airdrop {airdropId}</ContentLayout>;
 };

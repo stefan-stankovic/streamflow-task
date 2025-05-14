@@ -15,10 +15,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+@theme {
+  --color-primary: #512da8;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 @media (prefers-color-scheme: light) {
