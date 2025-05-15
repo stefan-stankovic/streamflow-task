@@ -41,6 +41,9 @@ dependencies:
   axios:
     specifier: ^1.9.0
     version: 1.9.0
+  bignumber.js:
+    specifier: ^9.3.0
+    version: 9.3.0
   class-variance-authority:
     specifier: ^0.7.1
     version: 0.7.1

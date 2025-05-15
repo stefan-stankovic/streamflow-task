@@ -1,4 +1,3 @@
-import { Spinner } from '@/app/components/ui/spinner';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useDeferredValue, useRef } from 'react';
 import { useNavigate } from 'react-router';
@@ -6,10 +5,9 @@ import { AirdropListItem } from './airdrop-list-item';
 
 type AirdropListProps = {
   items?: string[];
-  isLoading: boolean;
 };
 
-export const AirdropList = ({ items, isLoading }: AirdropListProps) => {
+export const AirdropList = ({ items }: AirdropListProps) => {
   const data = useDeferredValue(items);
 
   const navigate = useNavigate();
@@ -22,12 +20,11 @@ export const AirdropList = ({ items, isLoading }: AirdropListProps) => {
     overscan: 10,
   });
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
   const handleAirdropClick = (id: string) => navigate(`/${id}`);
 
+  if (data?.length === 0) {
+    return <p className='text-center'>Currently no airdrops available.</p>;
+  }
   return (
     <div ref={parentRef} className='h-[500px] overflow-y-auto w-full'>
       <div
@@ -45,7 +42,7 @@ export const AirdropList = ({ items, isLoading }: AirdropListProps) => {
               }}
             >
               <AirdropListItem
-                label={data[virtualRow.index]}
+                id={data[virtualRow.index]}
                 onClick={() => handleAirdropClick(data[virtualRow.index])}
               />
             </div>

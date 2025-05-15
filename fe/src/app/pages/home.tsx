@@ -18,21 +18,21 @@ export const Home = () => {
   }, [items, searchTerm]);
 
   return (
-    <ContentLayout>
+    <ContentLayout isLoading={isLoading}>
       <div className='flex flex-col w-full max-w-4xl h-full'>
         <div className='sticky top-[73px] bg-white z-10 py-4'>
           <div className='flex justify-between items-center'>
-            <h1 className='text-3xl font-semibold'>Available Airdrops</h1>
+            <h1 className='text-3xl font-semibold'>Airdrops</h1>
             <SearchInput
               placeholder='Search airdrops by ID'
-              className='max-w-96'
+              className='lg:max-w-96 max-w-48'
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
         </div>
         <div className='flex-1 overflow-y-auto'>
-          <AirdropList items={filteredItems} isLoading={isLoading} />
+          <AirdropList items={filteredItems} />
         </div>
       </div>
     </ContentLayout>
