@@ -3,22 +3,22 @@ import { useQuery } from '@tanstack/react-query';
 import type { ClaimantResponse } from './types';
 
 const getClaimantByAddres = async (
-  address: string,
+  airdropId: string,
   claimantAddress: string
 ): Promise<ClaimantResponse> => {
   const response = await apiClient.get(
-    `/airdrops/${address}/claimants/${claimantAddress}`
+    `/airdrops/${airdropId}/claimants/${claimantAddress}`
   );
   return response.data;
 };
 
 export const useGetClaimantByAddressQuery = (
-  address?: string,
+  airdropId?: string,
   claimantAddress?: string
 ) => {
   return useQuery({
-    queryKey: ['airdrops', address, claimantAddress],
-    queryFn: () => getClaimantByAddres(address || '', claimantAddress || ''),
-    enabled: !!address && !!claimantAddress,
+    queryKey: ['airdrops', airdropId, claimantAddress],
+    queryFn: () => getClaimantByAddres(airdropId || '', claimantAddress || ''),
+    enabled: !!airdropId && !!claimantAddress,
   });
 };

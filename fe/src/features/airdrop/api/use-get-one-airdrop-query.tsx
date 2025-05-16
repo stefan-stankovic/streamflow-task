@@ -2,15 +2,15 @@ import { apiClient } from '@/api/client';
 import { useQuery } from '@tanstack/react-query';
 import type { AirdropResponse } from './types';
 
-const getOneAirdrop = async (address: string): Promise<AirdropResponse> => {
-  const response = await apiClient.get(`/airdrops/${address}`);
+const getOneAirdrop = async (airdropId: string): Promise<AirdropResponse> => {
+  const response = await apiClient.get(`/airdrops/${airdropId}`);
   return response.data;
 };
 
-export const useGetOneAirdropQuery = (address?: string) => {
+export const useGetOneAirdropQuery = (airdropId?: string) => {
   return useQuery({
-    queryKey: ['airdrops', address],
-    queryFn: () => getOneAirdrop(address || ''),
-    enabled: !!address,
+    queryKey: ['airdrops', airdropId],
+    queryFn: () => getOneAirdrop(airdropId || ''),
+    enabled: !!airdropId,
   });
 };
