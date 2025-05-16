@@ -5,6 +5,7 @@ import type {
 } from '@solana/wallet-adapter-base';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const claimAirdrop = async (
   airdropId: string,
@@ -59,6 +60,14 @@ export const useClaimAirdropMutation = (
       queryClient.invalidateQueries({
         queryKey: ['airdrops', airdropId, publicKey?.toBase58()],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['accountInfo', airdropId],
+      });
+
+      toast.success('Successfully claimed!');
+    },
+    onError: () => {
+      toast.error('Claim rejected!');
     },
   });
 };

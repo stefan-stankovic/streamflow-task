@@ -1,9 +1,10 @@
 import { coinGeckoClient } from '@/api/coinGeckoClient';
 import { useQuery } from '@tanstack/react-query';
+import { coinGeckoRoutes } from './api-routes';
 
 const getMintPrice = async (mintAddress: string) => {
   const response = await coinGeckoClient.get(
-    `simple/token_price/solana?contract_addresses=${mintAddress}&vs_currencies=usd`
+    coinGeckoRoutes.getTokenPriceInUsd(mintAddress)
   );
   return response.data;
 };

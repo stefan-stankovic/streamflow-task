@@ -14,7 +14,6 @@ const hasAlreadyClaimed = async (
 ): Promise<boolean> => {
   const accountData = await connection.getAccountInfo(pda);
   if (!accountData?.data) {
-    console.log('upaooo');
     return false;
   }
   if (isInstant) {

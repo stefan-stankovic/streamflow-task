@@ -1,5 +1,7 @@
 import { apiClient } from '@/api/client';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { useQuery } from '@tanstack/react-query';
+import { airdropApiRoutes } from './api-routes';
 import type { ClaimantResponse } from './types';
 
 const getClaimantByAddres = async (
@@ -7,15 +9,15 @@ const getClaimantByAddres = async (
   claimantAddress: string
 ): Promise<ClaimantResponse> => {
   const response = await apiClient.get(
-    `/airdrops/${airdropId}/claimants/${claimantAddress}`
+    airdropApiRoutes.claimant(airdropId, claimantAddress)
   );
   return response.data;
 };
 
-export const useGetClaimantByAddressQuery = (
-  airdropId?: string,
-  claimantAddress?: string
-) => {
+export const useGetClaimantByAddressQuery = (airdropId?: string) => {
+  const { publicKey } = useWallet();
+  const claimantAddress = publicKey?.toBase58();
+
   return useQuery({
     queryKey: ['airdrops', airdropId, claimantAddress],
     queryFn: () => getClaimantByAddres(airdropId || '', claimantAddress || ''),

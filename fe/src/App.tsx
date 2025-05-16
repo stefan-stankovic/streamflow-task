@@ -8,6 +8,7 @@ import { useMemo } from 'react';
 
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
 import { Outlet } from 'react-router';
 import { Navbar } from './app/components/layout/navbar';
 
@@ -25,6 +26,7 @@ const App = () => {
           <WalletModalProvider>
             <Navbar />
             <Outlet />
+            <Toaster />
           </WalletModalProvider>
         </QueryClientProvider>
       </WalletProvider>

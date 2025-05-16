@@ -11,6 +11,7 @@ type AirdropCardProps = {
   userAmount: string;
   canClaim: boolean;
   onClaim: () => void;
+  alreadyClaimed?: boolean;
   dollarPrice?: BN;
 };
 
@@ -22,6 +23,7 @@ export const AirdropCard: React.FC<AirdropCardProps> = ({
   userAmount,
   canClaim,
   onClaim,
+  alreadyClaimed,
   dollarPrice,
 }) => {
   const nothingToClaim = userAmount === '0';
@@ -88,6 +90,7 @@ export const AirdropCard: React.FC<AirdropCardProps> = ({
           that it will be rejected. We are working on it!
         </span>
       )}
+      {alreadyClaimed && <p>You have already claimed this airdrop.</p>}
     </div>
   );
 };
