@@ -24,6 +24,9 @@ export const AirdropCard: React.FC<AirdropCardProps> = ({
   onClaim,
   dollarPrice,
 }) => {
+  const nothingToClaim = userAmount === '0';
+  const showUserAmountInDollars =
+    typeof dollarPrice === 'object' && !nothingToClaim;
   return (
     <div className='bg-white dark:bg-gray-900 rounded-2xl shadow-md p-6 w-full '>
       <div className='flex justify-between items-center mb-4'>
@@ -60,8 +63,10 @@ export const AirdropCard: React.FC<AirdropCardProps> = ({
         <div className='flex justify-between font-medium'>
           <span>Your Allocation</span>
           <div className='flex flex-row items-center justify-start gap-2'>
-            <span className='font-semibold text-primary'>{userAmount}</span>
-            {typeof dollarPrice === 'object' && (
+            <span className='font-semibold text-primary'>
+              {nothingToClaim ? '/' : userAmount}
+            </span>
+            {showUserAmountInDollars && (
               <span>~(${BN(userAmount).times(dollarPrice).toString()})</span>
             )}
           </div>
