@@ -9,7 +9,7 @@ import { useGetMint } from '@/features/mint/api/use-get-mint-query';
 import { useConnection } from '@solana/wallet-adapter-react';
 
 import { useCheckAirdropClaimedQuery } from '@/features/airdrop/api/use-check-airdrop-claimed-query';
-import { formatTokenAmount } from '@/utils/bigNumber';
+import { formatTokenAmount } from '@/utils/big-number';
 import BN from 'bignumber.js';
 import { useMemo } from 'react';
 import { useParams } from 'react-router';

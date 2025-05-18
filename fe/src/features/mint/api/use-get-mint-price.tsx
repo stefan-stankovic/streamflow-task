@@ -1,4 +1,4 @@
-import { coinGeckoClient } from '@/api/coinGeckoClient';
+import { coinGeckoClient } from '@/api/coin-gecko-client';
 import { useQuery } from '@tanstack/react-query';
 import { coinGeckoRoutes } from './api-routes';
 
